@@ -1,0 +1,28 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+
+class GFG {
+   static int count=0;
+    static int s=1;
+    static int h=2,d=3;
+	public static void main (String[] args) {
+		powerSet("abc","");
+	}
+	public static void powerSet(String in,String out)
+	{
+	    if(in.length()==0)
+	    {
+	        System.out.println(" "+out);
+	        return;
+	    }
+	    String o1=out;
+	    String o2=out;
+	    o2=out + in.charAt(0);
+	    in=in.substring(1, in.length());
+	    powerSet(in,o1);
+	    powerSet(in,o2);
+	    
+	    
+	}
+}

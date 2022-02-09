@@ -1,0 +1,26 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+
+class GFG {
+   static int count=0;
+    static int s=1;
+    static int h=2,d=3;
+	public static void main (String[] args) {
+		towerOfHanoi(3,s,h,d);
+		System.out.println("steps required to move all plates from A to C rod: "+count);
+	}
+	public static void towerOfHanoi(int n,int s, int h, int d)
+	{
+	    count++;
+	    if(n==1)
+	    {
+	        System.out.println("hey moving plate "+n+" from "+s+" to "+h);
+	        return;
+	    }
+	    towerOfHanoi(n-1,s,h,d);
+	    System.out.println("moving plate "+n+" from "+s+" to "+d);
+	    towerOfHanoi(n-1,h,d,s);
+	    
+	}
+}
