@@ -1,0 +1,51 @@
+// Java program to sort a Stack using recursion
+// Note that here predefined Stack class is used
+// for stack operation
+
+import java.util.ListIterator;
+import java.util.Stack;
+
+class Test
+{
+    
+    static void insert(Stack<Integer> s, int m)
+    {
+        if(s.isEmpty())
+        {
+            s.push(m);
+            return;
+        }
+        int temp=s.pop();
+        insert(s,m);
+        s.push(temp);
+    }
+	// Method to sort stack
+	static void reverseStack(Stack<Integer> s)
+	{
+		if(s.isEmpty())
+		{
+		    return;
+		}
+		int m=s.pop();
+		reverseStack(s);
+		insert(s,m);
+	}
+	public static void main(String[] args)
+	{
+		Stack<Integer> s = new Stack<>();
+		s.push(30);
+		s.push(-5);
+		s.push(18);
+		s.push(14);
+		s.push(-3);
+		s.push(12);
+		s.push(11);
+
+		System.out.println(
+			"Stack elements before reverseStack: "+s);
+		reverseStack(s);
+
+		System.out.println(
+			" \n\nStack elements after reverseStack:"+s);
+	}
+}

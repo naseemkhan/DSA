@@ -1,0 +1,70 @@
+/*
+
+Count the number of subset with a given difference
+                      OR
+Find number of subsets with given difference between their sums 
+
+Examples: 
+
+Input: arr[] = {1, 1, 2, 3}, X = 1 
+Output: 3 
+
+Explanation:
+ Three pairs of subsets:
+ 1.[1, 1, 2] and[3]
+ 2.[1, 2] and[1, 3]
+ 3.[1, 3] and[1, 2] (Because there are two 1's, so repitition of pairs is there)
+
+*/
+
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		int set[] = {1, 2, 3,4,5,6};
+		int diff=1;
+		int n=6;
+		int totSum=0;
+		for(int s:set)
+		{
+		    totSum+=s;
+		}
+		/*
+		sum(set1) - sum(set2)=diff
+		sum(set1) + sum(set2)=sum(set)
+		------------------------------
+		2sum(set1)=diff + sum(set)
+		sum(set1)=(diff+sum(set))/2
+		
+		*/
+		
+		int sum=(diff+totSum)/2;
+		
+		int[][] arr=new int[n+1][sum+1];
+		for(int i=0;i<n+1;i++)
+		{
+		    for(int j=0;j<sum+1;j++)
+		    {
+		        if(i==0)
+		        {
+		            arr[i][j]=0;
+		        }
+		        if(j==0)
+		            arr[i][j]=1;
+		    }
+		}
+		for(int i=1;i<n+1;i++)
+		{
+		    for(int j=1;j<sum+1;j++)
+		    {
+		        if(set[i-1]>j)
+		            arr[i][j]=arr[i-1][j];
+		        else
+		        {
+		            arr[i][j]=arr[i-1][j-set[i-1]] + arr[i-1][j];
+		        }
+		    }
+		}
+		System.out.println(arr[n][sum]);
+	}
+}
